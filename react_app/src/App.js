@@ -1,10 +1,14 @@
 import React from 'react';
+import LoginPage from './pages/LoginPage';
 import './App.css';
   
 function App() {
-    return ( 
-      <h1> Hello World! </h1>
-    );
+  return (
+    <div>
+      {/* Render the LoginPage component */}
+      <LoginPage />
+    </div>
+  );
 }
   
 export default App;
