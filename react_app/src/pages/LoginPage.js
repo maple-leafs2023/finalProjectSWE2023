@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Container, TextField, Typography } from '@mui/material';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,31 +14,42 @@ const LoginPage = () => {
     console.log('Password:', password);
   };
 
+  const goToSignUp = () => {
+    navigate('/signup');
+  };
+
   return (
-    <div>
-      <h1>Login</h1>
+    <Container maxWidth="sm">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Login Page
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
+        <TextField
+          label="Email"
           type="email"
-          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          fullWidth
+          margin="normal"
         />
-        <br />
-        <label htmlFor="password">Password:</label>
-        <input
+        <TextField
+          label="Password"
           type="password"
-          id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          fullWidth
+          margin="normal"
         />
-        <br />
-        <button type="submit">Login</button>
+        <Button type="submit" variant="contained" color="primary" style={{ marginRight: '10px' }}>
+          Login
+        </Button>
+        <Button variant="outlined" color="secondary" onClick={goToSignUp}>
+          Create Account
+        </Button>
       </form>
-    </div>
+    </Container>
   );
 };
 
