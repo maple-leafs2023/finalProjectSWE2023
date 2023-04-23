@@ -26,6 +26,7 @@ const SignUp = () => {
       component="h1" 
       align="right" 
       color="secondary" 
+      sx={{ marginTop: '2rem' }}
       gutterBottom>
         Create your Account
       </Typography>
@@ -56,7 +57,11 @@ const SignUp = () => {
             />
           </div>
         ))}
-        <Button type="submit" variant="contained" color="primary">
+        <Button 
+        type="submit" 
+        variant="contained"
+        size="normal" 
+        color="primary">
           Sign Up
         </Button>
       </form>

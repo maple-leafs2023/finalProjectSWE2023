@@ -24,8 +24,8 @@ const PasswordPage = () => {
 
     if (isValidPassword && password === passwordConfirm) {
       console.log('Passwords match:', password);
-      // Perform your password creation logic here
-      navigate('/'); // Navigate to your desired page after successful password creation
+      //Password creation logic here
+      navigate('/'); // Navigate to next page
     } else {
       alert('Passwords do not match or do not meet the requirements. Try again.');
     }

@@ -5,6 +5,7 @@ import SignUp from './pages/SignUp';
 import PasswordPage from './pages/PasswordPage';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import HomePage from './pages/HomePage'; // Import HomePage
 
 /*// Default theme (light)
 const lightTheme = createTheme({
@@ -35,7 +36,7 @@ const customTheme = createTheme({
   },
 });
 
-// Choose the theme you want to use
+// Theme chooser - light/dark theme is commented out
 const theme = customTheme; // You can replace 'customTheme' with 'lightTheme' or 'darkTheme' for the default themes
 
 function App() {
@@ -44,7 +45,8 @@ function App() {
       <div>
         <Router>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<HomePage />} /> {/* Set HomePage as the default route */}
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/password" element={<PasswordPage />} />
           </Routes>
