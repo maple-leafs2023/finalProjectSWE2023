@@ -19,9 +19,13 @@ const LoginPage = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Typography variant="h4" component="h1" gutterBottom>
-        Login Page
+    <Container maxWidth="sm" className="login-container">
+      <Typography variant="h4" 
+      component="h1" 
+      align="right" 
+      color="secondary" 
+      gutterBottom>
+        Login or Create Account
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -31,7 +35,7 @@ const LoginPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
           fullWidth
-          margin="normal"
+          margin="large"
         />
         <TextField
           label="Password"

@@ -22,8 +22,12 @@ const SignUp = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h4" component="h1" gutterBottom>
-        Sign Up Page
+      <Typography variant="h4" 
+      component="h1" 
+      align="right" 
+      color="secondary" 
+      gutterBottom>
+        Create your Account
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         {[
@@ -45,7 +49,10 @@ const SignUp = () => {
               error={!!errors[key]}
               helperText={errors[key] && 'This field is required'}
               fullWidth
-              margin="normal"
+              sx={{ marginTop: 1.2, marginBottom: 1.2 }}
+              margin="sx"
+              variant="outlined"
+              size="small"
             />
           </div>
         ))}

@@ -6,7 +6,7 @@ import PasswordPage from './pages/PasswordPage';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-// Default theme (light)
+/*// Default theme (light)
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
@@ -19,19 +19,19 @@ const darkTheme = createTheme({
     mode: 'dark',
   },
 });
-
+*/
 // Custom theme
 const customTheme = createTheme({
   palette: {
     primary: {
-      main: '#3f51b5',
+      main: '#588157',
     },
     secondary: {
-      main: '#f50057',
+      main: '#344E41',
     },
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Roboto, sans-serif',
   },
 });
 
