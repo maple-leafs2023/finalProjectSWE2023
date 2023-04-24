@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LoginPage from './pages/LoginPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './pages/SignUp';
 import PasswordPage from './pages/PasswordPage';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import HomePage from './pages/HomePage'; // Import HomePage
-
+import HomePage from './pages/HomePage'; 
+import UserContext from './pages/UserContext';
 /*// Default theme (light)
 const lightTheme = createTheme({
   palette: {
@@ -39,8 +39,11 @@ const customTheme = createTheme({
 // Theme chooser - light/dark theme is commented out
 const theme = customTheme; // You can replace 'customTheme' with 'lightTheme' or 'darkTheme' for the default themes
 
+
 function App() {
+  const [user, setUser] = useState({});
   return (
+    <UserContext.Provider value={{ user, setUser }}>
     <ThemeProvider theme={theme}>
       <div>
         <Router>
@@ -53,6 +56,7 @@ function App() {
         </Router>
       </div>
     </ThemeProvider>
+    </UserContext.Provider>
   );
 }
 

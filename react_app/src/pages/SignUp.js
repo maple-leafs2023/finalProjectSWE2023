@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, TextField, Typography } from '@mui/material';
+import UserContext from './UserContext';
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const onSubmit = async (data) => {
     try {
       const response = await axios.post('http://localhost:5001/signup', data);
 
       console.log(response.data);
-
+      
+      setUser(data);
       navigate('/password');
     } catch (error) {
       console.error('Error during signup:', error);

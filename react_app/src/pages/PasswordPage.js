@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Typography, TextField, Button, Box, List, ListItem, ListItemText } from '@mui/material';
+import UserContext from './UserContext';
+import axios from 'axios';
 
 const PasswordPage = () => {
   const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [isValidPassword, setIsValidPassword] = useState(false);
@@ -19,13 +22,22 @@ const PasswordPage = () => {
     setIsValidPassword(valid);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (isValidPassword && password === passwordConfirm) {
       console.log('Passwords match:', password);
-      //Password creation logic here
-      navigate('/'); // Navigate to next page
+
+      setUser({...user, password});
+
+      try {
+        const response = await axios.post('http://localhost:5001/create-user', { ...user, password });
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error during user creation:', error);
+      }
+      
+      navigate('/homepage'); 
     } else {
       alert('Passwords do not match or do not meet the requirements. Try again.');
     }

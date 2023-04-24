@@ -11,5 +11,5 @@
 1. ` scp -r ./build/* ubuntu@ec2-3-145-218-234.us-east-2.compute.amazonaws.com:~/` ***This copys the files to the server at the home directory***
 1. `ssh into the server, and move all the files into /var/www/html/`
 1. The files should now be able to be found at the public ip for our instance `hhttp://3.145.218.234` ***make sure you are using http not https (I need to fix this at some point)***
-In a seperate terminal cd backend and run index.js to start up the backend
+2. In a seperate terminal cd backend and run index.js to start up the backend
 
