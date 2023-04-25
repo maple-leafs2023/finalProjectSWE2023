@@ -12,10 +12,9 @@ var AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-2'});
 var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-
 // Routes
 app.post('/signup', (req, res) => {
-  // Your sign-up logic herei
+  // Your sign-up logic here
   console.log(req.body);
   console.log("first name = " + req.body.firstName)
 
@@ -39,7 +38,7 @@ app.post('/signup', (req, res) => {
     }
   };
 
-// Call DynamoDB to add the item to the table
+  // Call DynamoDB to add the item to the table
   ddb.putItem(params, function(err, data) {
     if (err) {
       console.log("Error", err);
@@ -48,12 +47,10 @@ app.post('/signup', (req, res) => {
     }
   });
 
-  
   // For now, just return a successful response
   res.status(200).json({ message: 'User signed up successfully' });
 });
 
-// New route for creating a user with a password
 app.post('/create-user', (req, res) => {
   const userData = req.body;
 
@@ -63,6 +60,20 @@ app.post('/create-user', (req, res) => {
   // For example, you can save the user to a database, send a confirmation email, etc.
 
   res.status(201).json({ message: 'User created successfully!' });
+});
+
+// New route for updating user data
+app.put('/user/:id', (req, res) => {
+  const userId = req.params.id;
+  const userData = req.body;
+
+  console.log(`Updating user with ID: ${userId}`);
+  console.log('User Data:', userData);
+
+  // Add your user updating logic here
+  // For example, you can update the user data in the database
+
+  res.status(200).json({ message: 'User updated successfully!' });
 });
 
 // Start the server
