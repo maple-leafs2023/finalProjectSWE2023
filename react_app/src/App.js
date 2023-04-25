@@ -7,6 +7,8 @@ import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import HomePage from './pages/HomePage'; 
 import UserContext from './pages/UserContext';
+import EditAccount from './pages/EditAccount';
+
 /*// Default theme (light)
 const lightTheme = createTheme({
   palette: {
@@ -52,6 +54,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/password" element={<PasswordPage />} />
+            <Route path="/edit-account" element={<EditAccount/>} />
           </Routes>
         </Router>
       </div>

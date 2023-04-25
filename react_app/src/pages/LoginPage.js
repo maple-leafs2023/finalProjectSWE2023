@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, TextField, Typography } from '@mui/material';
+import axios from 'axios';
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Authentication logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      const response = await axios.post('http://localhost:5001/login', {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        console.log('Login successful:', response.data);
+        
+        navigate('/'); //navigate empty for now
+      }
+    } catch (error) {
+      console.error('Error:', error.response.data);
+    }
   };
+
 
   const goToSignUp = () => {
     navigate('/signup');

@@ -17,13 +17,20 @@ app.post('/signup', (req, res) => {
   // Your sign-up logic here
   console.log(req.body);
   console.log("first name = " + req.body.firstName)
+  // For now, just return a successful response
+  res.status(200).json({ message: 'User signed up successfully' });
+});
 
+// Route for creating a user with a password
+app.post('/create-user', (req, res) => {
+  
   var firstName = req.body.firstName
   var lastName = req.body.lastName
   var email = req.body.email;
   var cellPhone = req.body.cellPhone;
   var hours = req.body.hours; 
   var address = req.body.address;
+  var password = req.body.password;
 
   var params = {
     TableName: 'mapleLeafs',
@@ -34,7 +41,7 @@ app.post('/signup', (req, res) => {
       'cellPhone' : {S: cellPhone},
       'hours':{N:hours},
       'address' :{S:address},
-      'password':{S:"Null"}
+      'password':{S:password}
     }
   };
 
@@ -48,21 +55,10 @@ app.post('/signup', (req, res) => {
   });
 
   // For now, just return a successful response
-  res.status(200).json({ message: 'User signed up successfully' });
+  res.status(200).json({ message: 'User created successfully' });
 });
 
-app.post('/create-user', (req, res) => {
-  const userData = req.body;
-
-  console.log('User Data:', userData);
-
-  // Add your user creation logic here
-  // For example, you can save the user to a database, send a confirmation email, etc.
-
-  res.status(201).json({ message: 'User created successfully!' });
-});
-
-// New route for updating user data
+// Route for updating user data
 app.put('/user/:id', (req, res) => {
   const userId = req.params.id;
   const userData = req.body;
@@ -75,7 +71,31 @@ app.put('/user/:id', (req, res) => {
 
   res.status(200).json({ message: 'User updated successfully!' });
 });
+ 
+// route for checking login
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
 
+  const params = {
+    TableName: 'mapleLeafs',
+    Key: {
+      'username': { S: email },
+    },
+  };
+
+  try {
+    const { Item } = await ddb.getItem(params).promise();
+
+    if (Item && Item.password && Item.password.S === password) {
+      res.status(200).json({ message: 'Login successful', user: Item });
+    } else {
+      res.status(401).json({ message: 'Invalid email or password' });
+    }
+  } catch (error) {
+    console.log('Error:', error);
+    res.status(500).json({ message: 'Error occurred while processing your request' });
+  }
+});
 // Start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

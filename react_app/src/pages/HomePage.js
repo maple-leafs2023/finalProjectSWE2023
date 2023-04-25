@@ -7,6 +7,7 @@ const HomePage = () => {
 
   return (
     <Container maxWidth="sm">
+      
       <Box
         display="flex"
         flexDirection="column"
@@ -21,6 +22,16 @@ const HomePage = () => {
           color="secondary"
           gutterBottom
         >
+        <Button 
+        variant="contained" 
+        color="primary"
+        justifyContent="right"
+        onClick={() => navigate('/edit-account')}
+        sx={{ marginTop: 2, marginBottom: 1 }}
+        gutterBottom
+        >
+        Edit Account
+      </Button>
           Food Bank Volunteer Management System
         </Typography>
         <Button
